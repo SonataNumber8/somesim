@@ -32,6 +32,9 @@ func main() {
   screen.Fini()
 }
 
+
+// These variables suck
+// TODO: Make them not suck
 func drawText(s tcell.Screen, x1, y1, x2, y2 int, style tcell.Style, text string) {
   row := y1
   col := x1
@@ -48,6 +51,10 @@ func drawText(s tcell.Screen, x1, y1, x2, y2 int, style tcell.Style, text string
   }
 }
 
+
+// These variables also suck
+// Also maybe make it possible to auto center the text?
+// TODO: ^^ Those things
 func drawBox(s tcell.Screen, x1, y1, x2, y2 int, style tcell.Style, text string) {
 	if y2 < y1 {
 		y1, y2 = y2, y1
