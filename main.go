@@ -17,23 +17,32 @@ func main() {
 	defStyle := tcell.StyleDefault.Background(tcell.ColorReset).Foreground(tcell.ColorReset)
 
 	screen.Init()
-
 	screen.Clear()
 
-	drawText(screen, 0, 1, 80, 1, defStyle, "Sup Alec")
+	// drawText(screen, 0, 1, 80, 1, defStyle, "Sup Alec")
 
-	//drawBox(screen, 20, 5, 60, 25, defStyle, "I made this box just now")
-
-	testBox := Box{
+	testBox := Box {
 		startX: 20,
 		startY: 5,
 		endX: 60,
 		endY: 25,
 		style: defStyle,
-		text: "I made this box just now", 
 	}
 
+        box2 := MessageBox {
+		Box: Box{startX: 20,
+		startY: 26,
+		endX: 60,
+		endY: 30,
+		style: defStyle,
+		},
+	}
+
+	box2.messages = append(box2.messages, "Test Message")
+
 	drawBox(screen, testBox)
+	drawBox(screen, box2.Box)
+        drawText(screen, box2.startX + 2, box2.startY +1, box2.endX, box2.endY, box2.style, box2.messages[0])
 
 	screen.Show()
 

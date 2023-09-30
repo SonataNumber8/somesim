@@ -47,11 +47,18 @@ func drawBox(s tcell.Screen, box Box) {
 		s.SetContent(box.endX, box.endY, tcell.RuneLRCorner, nil, box.style)
 	}
 
-	drawText(s, box.startX+1, box.startY+1, box.endX-1, box.endY-1, box.style, box.text)
+	if box.text != "" {
+		drawText(s, box.startX+1, box.startY+1, box.endX-1, box.endY-1, box.style, box.text)
+	}
 }
 
 type Box struct {
 	startX, startY, endX, endY int
 	style tcell.Style
         text string
+}
+
+type MessageBox struct {
+	Box
+	messages []string
 }
