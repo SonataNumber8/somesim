@@ -1,33 +1,31 @@
 package main
 
 import (
+	"log"
+	"time"
 
-  "log"
-  "time"
-
-  "github.com/gdamore/tcell/v2"
-  
+	"github.com/gdamore/tcell/v2"
 )
 
 func main() {
-  screen, err := tcell.NewScreen()
-  
-  if err != nil {
-    log.Fatalf("%+v", err)
-  }
+	screen, err := tcell.NewScreen()
 
-  defStyle := tcell.StyleDefault.Background(tcell.ColorReset).Foreground(tcell.ColorReset)
+	if err != nil {
+		log.Fatalf("%+v", err)
+	}
 
-  screen.Init()
+	defStyle := tcell.StyleDefault.Background(tcell.ColorReset).Foreground(tcell.ColorReset)
 
-  screen.Clear()
-  
-  drawText(screen, 0 ,1 ,80 , 1, defStyle, "Yooooooo")  
+	screen.Init()
 
-  drawBox(screen, 20, 5, 40, 15, defStyle, "I said yoooo")
+	screen.Clear()
 
-  screen.Show()
+	drawText(screen, 0, 1, 80, 1, defStyle, "Yooooooo")
 
-  time.Sleep(3 * time.Second)
-  screen.Fini()
+	drawBox(screen, 20, 5, 40, 15, defStyle, "I said yoooo")
+
+	screen.Show()
+
+	time.Sleep(3 * time.Second)
+	screen.Fini()
 }
