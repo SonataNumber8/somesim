@@ -63,6 +63,21 @@ type MessageBox struct {
 	messages []string
 }
 
-func (msgBox MessageBox) ShowMessages() {
+func (msgBox MessageBox) ShowMessages(screen tcell.Screen) {
+	loopcount := 0
+	if len(msgBox.messages) < msgBox.GetHeight()-1 {
+		for i:=len(msgBox.messages)-1; i > -1; i-- {
+			drawText(screen, msgBox.startX+2,msgBox.startY+1+loopcount, msgBox.endX-2, msgBox.endY-1, msgBox.style, msgBox.messages[i])
+			loopcount++
+		}
+	} 
+			
+}
 
+func (box Box) GetWidth() int {
+	return box.endX - box.startX + 1
+}
+
+func (box Box) GetHeight() int {
+	return box.endY - box.startY + 1
 }
