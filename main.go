@@ -23,7 +23,7 @@ func main() {
 	testBox := Box {
 		startX: 1,
 		startY: 0,
-		endX: 60,
+		endX: 80,
 		endY: 25,
 		style: defStyle,
 	}
@@ -31,7 +31,7 @@ func main() {
         box2 := MessageBox {
 		Box: Box{startX: 1,
 		startY: 26,
-		endX: 60,
+		endX: 80,
 		endY: 30,
 		style: msgBoxStyle,
 		},
@@ -51,17 +51,15 @@ func main() {
 		switch event := event.(type) {
 			case *tcell.EventKey:
 				if event.Key() == tcell.KeyEscape || event.Key() == tcell.KeyCtrlC {
-					exit(screen)
+					screen.Fini()
 					fmt.Println("Exiting")
 					return
 				}
 			case *tcell.EventResize:
+				drawBox(screen, testBox)
+				drawBox(screen, box2.Box)
+			        drawText(screen, box2.startX + 2, box2.startY +1, box2.endX, box2.endY, box2.style, box2.messages[0])
 				screen.Sync()
 		}
 	}
-
-}
-
-func exit(screen tcell.Screen) {
-	screen.Fini()
 }
