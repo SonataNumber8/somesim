@@ -24,8 +24,8 @@ func main() {
 	box2 := MessageBox{
 		Box: Box{startX: 1,
 			startY: 1,
-			endX:   80,
-			endY:   5,
+			endX:   90,
+			endY:   10,
 			style:  msgBoxStyle,
 		},
 	}
@@ -33,6 +33,8 @@ func main() {
 	box2.messages = append(box2.messages, "Test Message")
 	box2.messages = append(box2.messages, "Message 2")
 	box2.messages = append(box2.messages, "Message 3")
+	box2.messages = append(box2.messages, "Message 4")
+	box2.messages = append(box2.messages, "Message 5")
 
 	drawBox(screen, box2.Box)
 //	drawText(screen, box2.startX+2, box2.startY+1, box2.endX, box2.endY, box2.style, box2.messages[0])
