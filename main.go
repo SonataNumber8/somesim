@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"time"
+	"fmt"
 
 	"github.com/gdamore/tcell/v2"
 )
@@ -15,26 +15,25 @@ func main() {
 	}
 
 	defStyle := tcell.StyleDefault.Background(tcell.ColorReset).Foreground(tcell.ColorReset)
+	msgBoxStyle := tcell.StyleDefault.Background(tcell.ColorGray).Foreground(tcell.ColorSnow)
 
 	screen.Init()
 	screen.Clear()
 
-	// drawText(screen, 0, 1, 80, 1, defStyle, "Sup Alec")
-
 	testBox := Box {
-		startX: 20,
-		startY: 5,
+		startX: 1,
+		startY: 0,
 		endX: 60,
 		endY: 25,
 		style: defStyle,
 	}
 
         box2 := MessageBox {
-		Box: Box{startX: 20,
+		Box: Box{startX: 1,
 		startY: 26,
 		endX: 60,
 		endY: 30,
-		style: defStyle,
+		style: msgBoxStyle,
 		},
 	}
 
@@ -45,7 +44,24 @@ func main() {
         drawText(screen, box2.startX + 2, box2.startY +1, box2.endX, box2.endY, box2.style, box2.messages[0])
 
 	screen.Show()
+        for {
+		screen.Show()
+		event := screen.PollEvent()
+		
+		switch event := event.(type) {
+			case *tcell.EventKey:
+				if event.Key() == tcell.KeyEscape || event.Key() == tcell.KeyCtrlC {
+					exit(screen)
+					fmt.Println("Exiting")
+					return
+				}
+			case *tcell.EventResize:
+				screen.Sync()
+		}
+	}
 
-	time.Sleep(3 * time.Second)
+}
+
+func exit(screen tcell.Screen) {
 	screen.Fini()
 }

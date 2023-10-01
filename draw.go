@@ -62,3 +62,7 @@ type MessageBox struct {
 	Box
 	messages []string
 }
+
+func (msgBox MessageBox) ShowMessages() {
+	
+}
