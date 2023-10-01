@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	//"strconv"
+	"strconv"
 
 	"github.com/gdamore/tcell/v2"
 )
@@ -30,17 +30,13 @@ func main() {
 		},
 	}
 
-	box2.messages = append(box2.messages, "Test Message")
-	box2.messages = append(box2.messages, "Message 2")
-	box2.messages = append(box2.messages, "Message 3")
-	box2.messages = append(box2.messages, "Message 4")
-	box2.messages = append(box2.messages, "Message 5")
-
 	drawBox(screen, box2.Box)
-//	drawText(screen, box2.startX+2, box2.startY+1, box2.endX, box2.endY, box2.style, box2.messages[0])
 
 	screen.Show()
+	i := 1
 	for {
+		box2.messages = append(box2.messages, "test message" + strconv.Itoa(i))
+		i++
 		screen.Show()
 		event := screen.PollEvent()
 
