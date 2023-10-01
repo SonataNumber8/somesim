@@ -1,8 +1,8 @@
 package main
 
 import (
-	"log"
 	"fmt"
+	"log"
 
 	"github.com/gdamore/tcell/v2"
 )
@@ -20,20 +20,20 @@ func main() {
 	screen.Init()
 	screen.Clear()
 
-	testBox := Box {
+	testBox := Box{
 		startX: 1,
 		startY: 0,
-		endX: 80,
-		endY: 25,
-		style: defStyle,
+		endX:   80,
+		endY:   25,
+		style:  defStyle,
 	}
 
-        box2 := MessageBox {
+	box2 := MessageBox{
 		Box: Box{startX: 1,
-		startY: 26,
-		endX: 80,
-		endY: 30,
-		style: msgBoxStyle,
+			startY: 26,
+			endX:   80,
+			endY:   30,
+			style:  msgBoxStyle,
 		},
 	}
 
@@ -41,25 +41,25 @@ func main() {
 
 	drawBox(screen, testBox)
 	drawBox(screen, box2.Box)
-        drawText(screen, box2.startX + 2, box2.startY +1, box2.endX, box2.endY, box2.style, box2.messages[0])
+	drawText(screen, box2.startX+2, box2.startY+1, box2.endX, box2.endY, box2.style, box2.messages[0])
 
 	screen.Show()
-        for {
+	for {
 		screen.Show()
 		event := screen.PollEvent()
-		
+
 		switch event := event.(type) {
-			case *tcell.EventKey:
-				if event.Key() == tcell.KeyEscape || event.Key() == tcell.KeyCtrlC {
-					screen.Fini()
-					fmt.Println("Exiting")
-					return
-				}
-			case *tcell.EventResize:
-				drawBox(screen, testBox)
-				drawBox(screen, box2.Box)
-			        drawText(screen, box2.startX + 2, box2.startY +1, box2.endX, box2.endY, box2.style, box2.messages[0])
-				screen.Sync()
+		case *tcell.EventKey:
+			if event.Key() == tcell.KeyEscape || event.Key() == tcell.KeyCtrlC {
+				screen.Fini()
+				fmt.Println("Exiting")
+				return
+			}
+		case *tcell.EventResize:
+			drawBox(screen, testBox)
+			drawBox(screen, box2.Box)
+			drawText(screen, box2.startX+2, box2.startY+1, box2.endX, box2.endY, box2.style, box2.messages[0])
+			screen.Sync()
 		}
 	}
 }

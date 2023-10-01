@@ -54,8 +54,8 @@ func drawBox(s tcell.Screen, box Box) {
 
 type Box struct {
 	startX, startY, endX, endY int
-	style tcell.Style
-        text string
+	style                      tcell.Style
+	text                       string
 }
 
 type MessageBox struct {
@@ -64,5 +64,5 @@ type MessageBox struct {
 }
 
 func (msgBox MessageBox) ShowMessages() {
-	
+
 }
