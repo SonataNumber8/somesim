@@ -64,10 +64,12 @@ type MessageBox struct {
 }
 
 func (msgBox MessageBox) ShowMessages(screen tcell.Screen) {
-	loopcount := 0
+	const xoffset = 2
+        const yoffset = 1
+        loopcount := 0
 	if len(msgBox.messages) < msgBox.GetHeight()-1 {
 		for i:=len(msgBox.messages)-1; i > -1; i-- {
-			drawText(screen, msgBox.startX+2,msgBox.startY+1+loopcount, msgBox.endX-2, msgBox.endY-1, msgBox.style, msgBox.messages[i])
+			drawText(screen, msgBox.startX + xoffset, msgBox.startY + yoffset + loopcount, msgBox.endX - xoffset, msgBox.endY - yoffset, msgBox.style, msgBox.messages[i])
 			loopcount++
 		}
 	} 
